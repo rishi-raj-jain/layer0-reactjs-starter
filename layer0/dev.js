@@ -17,6 +17,7 @@ module.exports = function () {
   return createDevServer({
     label: 'Create React App',
     command: (port) => `PORT=${port} npm run start`,
-    ready: [/localhost:/i, /127.0.0.1:/i],
+    ready: [/localhost:/i],
+    filterOutput: (line) => !(line.includes('localhost') || line.includes('127.0.0.1')),
   })
 }
